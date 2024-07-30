@@ -5,6 +5,9 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.LinkedList;
+import java.util.List;
+
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class SlackMessageSender {
 
@@ -13,32 +16,40 @@ public class SlackMessageSender {
     }
 
     public static class UrlBuilder {
-        public TextBuilder url(String url) {
-            return new TextBuilder(url);
+        public MessageBuilder url(String url) {
+            return new MessageBuilder(url);
         }
     }
 
     @RequiredArgsConstructor
-    public static class TextBuilder {
+    public static class MessageBuilder {
         private final String url;
+        private final List<Block> blocks = new LinkedList<>();
 
-        public BodyBuilder text(String text) {
-            return new BodyBuilder(url, text);
+        public MessageBuilder text(String text) {
+            RichTextSection richTextSection = new RichTextSection();
+            richTextSection.add(new RichTextElement.Text(text));
+
+            RichTextBlock richTextBlock = new RichTextBlock();
+            richTextBlock.add(richTextSection);
+
+            this.blocks.add(richTextBlock);
+            return this;
         }
-    }
 
-    @RequiredArgsConstructor
-    public static class BodyBuilder {
-        private final String url;
-        private final String text;
+        public MessageBuilder image(String imageUrl) {
+            this.blocks.add(ImageBlock.of(imageUrl));
+            return this;
+        }
 
         public void send() {
-            new RestTemplate().postForEntity(url, new Body(text), String.class);
+            Body body = new Body(blocks);
+            new RestTemplate().postForEntity(url, body, String.class);
         }
     }
 
     public record Body(
-        String text
+        List<Block> blocks
     ) {
     }
 }
