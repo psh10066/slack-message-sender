@@ -2,19 +2,19 @@ package com.psh10066.slackmessagesender;
 
 import lombok.Getter;
 
-import java.util.LinkedList;
 import java.util.List;
 
 @Getter
 class RichTextSection extends RichTextObject {
 
-    private final List<RichTextElement> elements = new LinkedList<>();
+    private final List<RichTextElement> elements;
 
-    public RichTextSection() {
+    private RichTextSection(RichTextElement... richTextElements) {
         super("rich_text_section");
+        this.elements = List.of(richTextElements);
     }
 
-    public void add(RichTextElement element) {
-        elements.add(element);
+    static RichTextSection text(String text) {
+        return new RichTextSection(new RichTextElement.Text(text));
     }
 }
