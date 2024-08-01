@@ -28,3 +28,16 @@ SlackMessageSender.builder()
     .send("https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX");
 ```
 
+## 설치 방법
+
+- build.gradle에 아래 코드 추가
+
+```groovy
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'com.github.psh10066:slack-message-sender:v0.0.3'
+}
+```
