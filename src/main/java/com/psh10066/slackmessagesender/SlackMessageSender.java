@@ -26,12 +26,15 @@ public class SlackMessageSender {
         return this;
     }
 
-    public void send(String url) {
-        Body body = new Body(blocks);
-        new RestTemplate().postForLocation(url, body);
+    public Body body() {
+        return new Body(blocks);
     }
 
-    record Body(
+    public void send(String url) {
+        new RestTemplate().postForLocation(url, body());
+    }
+
+    public record Body(
         List<Block> blocks
     ) {
     }
