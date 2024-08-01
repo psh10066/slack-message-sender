@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.psh10066'
-version = '0.0.1'
+version = '0.0.3'
 
 java {
     sourceCompatibility = '17'
@@ -33,6 +33,15 @@ dependencies {
 dependencyManagement {
     imports {
         mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication){
+            // jar is the default build task configured by Spring Boot if bootJar=false
+            artifact jar
+        }
     }
 }
 
