@@ -14,7 +14,7 @@ class RichTextBlock extends Block {
         this.elements = List.of(richTextObjects);
     }
 
-    static RichTextBlock text(String text) {
-        return new RichTextBlock(RichTextSection.text(text));
+    static RichTextBlock text(RichTextObject richTextObject, String text) {
+        return new RichTextBlock(richTextObject.text(text));
     }
 }

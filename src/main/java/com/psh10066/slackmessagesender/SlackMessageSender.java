@@ -17,7 +17,7 @@ public class SlackMessageSender {
     }
 
     public SlackMessageSender text(String text) {
-        this.blocks.add(RichTextBlock.text(text));
+        this.blocks.add(RichTextBlock.text(new RichTextObject.RichTextSection(), text));
         return this;
     }
 
