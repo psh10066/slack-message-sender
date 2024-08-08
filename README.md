@@ -7,6 +7,12 @@
 
 ## 사용 방법
 
+- `SlackMessageSender.builder()` 이후 아래 메소드를 사용하여 메시지를 조합합니다.
+  - text : 일반 텍스트
+  - image : 이미지 URL
+  - preformatted : 텍스트 블록
+  - quote : 인용 블록
+
 ### 1. 메시지 양식 가져오기
 
 ```java
