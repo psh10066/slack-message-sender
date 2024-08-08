@@ -48,6 +48,6 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.psh10066:slack-message-sender:v0.0.3'
+    implementation 'com.github.psh10066:slack-message-sender:v0.0.4'
 }
 ```
