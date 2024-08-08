@@ -22,4 +22,16 @@ abstract class RichTextObject {
             super("rich_text_section");
         }
     }
+
+    static class RichTextPreformatted extends RichTextObject {
+        public RichTextPreformatted() {
+            super("rich_text_preformatted");
+        }
+    }
+
+    static class RichTextQuote extends RichTextObject {
+        public RichTextQuote() {
+            super("rich_text_quote");
+        }
+    }
 }

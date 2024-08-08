@@ -21,6 +21,16 @@ public class SlackMessageSender {
         return this;
     }
 
+    public SlackMessageSender preformatted(String text) {
+        this.blocks.add(RichTextBlock.text(new RichTextObject.RichTextPreformatted(), text));
+        return this;
+    }
+
+    public SlackMessageSender quote(String text) {
+        this.blocks.add(RichTextBlock.text(new RichTextObject.RichTextQuote(), text));
+        return this;
+    }
+
     public SlackMessageSender image(String imageUrl) {
         this.blocks.add(ImageBlock.of(imageUrl));
         return this;

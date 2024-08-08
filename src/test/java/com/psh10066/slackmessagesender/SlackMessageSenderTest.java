@@ -192,4 +192,74 @@ class SlackMessageSenderTest {
             """;
         JSONAssert.assertEquals(jsonBody, expected, true);
     }
+
+    @DisplayName("preformatted 블록을 생성할 수 있다.")
+    @Test
+    void test4() throws Exception {
+        // given
+        SlackMessageSender.Body body = SlackMessageSender.builder()
+            .preformatted("안녕하세요~")
+            .body();
+
+        // when
+        String jsonBody = objectMapper.writeValueAsString(body);
+
+        // then
+        String expected = """
+            {
+                "blocks": [
+                    {
+                        "type":"rich_text",
+                        "elements":[
+                            {
+                                "type":"rich_text_preformatted",
+                                "elements":[
+                                    {
+                                        "type":"text",
+                                        "text":"안녕하세요~"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+            """;
+        JSONAssert.assertEquals(jsonBody, expected, true);
+    }
+
+    @DisplayName("quote 블록을 생성할 수 있다.")
+    @Test
+    void test5() throws Exception {
+        // given
+        SlackMessageSender.Body body = SlackMessageSender.builder()
+            .quote("안녕하세요~")
+            .body();
+
+        // when
+        String jsonBody = objectMapper.writeValueAsString(body);
+
+        // then
+        String expected = """
+            {
+                "blocks": [
+                    {
+                        "type":"rich_text",
+                        "elements":[
+                            {
+                                "type":"rich_text_quote",
+                                "elements":[
+                                    {
+                                        "type":"text",
+                                        "text":"안녕하세요~"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+            """;
+        JSONAssert.assertEquals(jsonBody, expected, true);
+    }
 }

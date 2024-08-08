@@ -13,6 +13,8 @@
 SlackMessageSender.Body body = SlackMessageSender.builder()
     .text("텍스트입니다.")
     .image("http://image.url")
+    .preformatted("텍스트 블록입니다.")
+    .quote("인용 블록입니다.")
     .body();
 ```
 
@@ -25,6 +27,8 @@ SlackMessageSender.Body body = SlackMessageSender.builder()
 SlackMessageSender.builder()
     .text("텍스트입니다.")
     .image("http://image.url")
+    .preformatted("텍스트 블록입니다.")
+    .quote("인용 블록입니다.")
     .send("https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX");
 ```
 
